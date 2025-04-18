@@ -1,0 +1,80 @@
+'''x=[1,2]
+y=[3,4]
+ 
+for i in x:
+    for j in y:
+        print(i,j) '''
+        
+'''a={
+    "name":"ram"
+    "village":"duttalur"
+}   
+for k in a.keys():
+    print(k)  '''
+    
+
+'''def a():
+    print("welcome")
+a()  '''   
+
+'''def a(name):
+    print(name)
+a("Ram")   '''
+
+       
+'''def add(a,b):
+    return a+b
+result=add(5,3)
+print(result)'''
+
+'''def a(name="guest"):
+    print(name)
+a()     #guest
+a("madhan")    #madhan  '''
+
+'''def a():
+    name="madhan"
+    age=21
+    return name,age
+n,b=a()
+print("Name:",n, "Age:",b)  '''
+
+'''def a(*num):
+    return sum(num)   #sum is predefined function
+print(a(1,2,3,4,5))'''
+
+'''def a(**details):
+    for key, value in details.items():
+        print(key, ":", value)
+a(name="ram", age=21, city="bengaluru")'''   
+     
+  
+  
+#arrays
+'''import array
+a=array.array('u', "applebananacherry")
+print(a[0])   '''
+
+'''import array
+a=array.array('u', "applebananacherry")
+for x in a:
+    print(x)'''
+    
+'''import array
+a=array.array('u', "applebanana","cherry")
+for x in a:
+    print(x)    
+output:TypeError: array() takes at most 2 arguments (3 given)     '''
+
+
+'''import array
+a=array.array('i',[1,2,3,4,5])
+length=len(a)
+print(length)
+output:5'''
+
+'''import array
+a=array.array('u',[1,2,3,4,5])
+length=len(a)
+print(length)
+output:TypeError: array item must be unicode character'''

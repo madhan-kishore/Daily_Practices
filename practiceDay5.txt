@@ -1,0 +1,200 @@
+#JSON to python
+import json
+x='{"name":"xyz","age":35}' #json
+z=json.loads(x)
+print(z["name"]) #xyz
+print(z["age"]) #35
+
+#Python(dictionary) to JSON
+x={
+    "name":"xyz",
+    "age":35
+}
+y=json.dumps(x)
+print(y)      #{"name": "xyz", "age": 35}
+
+#------------------------------------------------------------------------------
+
+#Regex:
+
+import re
+x="The rain in spain"
+y=re.search("^The .*spain$",x)    # '^' is used for stating and '&' is used for ending
+if y:
+    print("Yes the match is correct")
+else:
+    print("Not matched")
+    
+
+x="The rain in spain"  
+y=re.findall("ai",x)
+print(y)       #['ai', 'ai']
+
+z=re.search("\s",x)
+print(z)
+z=re.split("\s",x) #split with white spaces
+print(z)   #['The', 'rain', 'in', 'spain']
+z=re.sub("\s","$",x) #replace all white spaces with $
+print(z) #The$rain$in$spain
+
+x=r"\d+"  #pattern to search digits
+y="There are 123 apples"
+match=re.search(x,y)
+if match:
+    print("Match found:", match.group())  #Match found: 123
+    
+    
+x=r"\d+"  #pattern to search one or more digits
+y="There are 123 apples and 456 oranges"
+match=re.findall(x,y)
+print(match) #['123', '456']
+
+x=r"(\d+)-(\d+)-(\d+)"
+y="The event is on 2025-03-26"
+match=re.search(x,y)
+if match:
+    print("Year:",match.group(1))   #Year: 2025
+    print("Month:",match.group(2))  #Month: 03
+    print("Day:",match.group(3))    #Day: 26
+    
+
+#Email validation
+email=r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+text="Please contact us at madhan@gmail.com"
+match=re.search(email,text)
+if match:
+    print("Email found:",  match.group())     #Email found: madhan@gmail.com
+    
+#---------------------------------------------------------------------------------------------------
+#Logging:
+#used to display alert or warning messages or to save lof messages in log file
+
+#5 levels
+'''1.debug
+2.info
+3.warning
+4.error
+5.critical'''
+
+import logging
+
+logging.debug("Hello, Debug!")      #DEBUG:root:Hello, Debug!
+logging.info('Hello, Info!')       #INFO:root:Hello, Info!
+logging.warning('Hello, warning!')  #WARNING:root:Hello, warning!
+logging.error('Hello, error!')       #ERROR:root:Hello, error!
+logging.critical('Hello, critical!') #CRITICAL:root:Hello, critical!
+
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='app.log',
+    filemode='a',
+    format='%(name)s-%(levelname)s-%(message)s'
+)
+
+logging.debug("Hello, Debug!")      #DEBUG:root:Hello, Debug!
+logging.info('Hello, Info!')       #INFO:root:Hello, Info!
+logging.warning('Hello, warning!')  #WARNING:root:Hello, warning!
+logging.error('Hello, error!')       #ERROR:root:Hello, error!
+logging.critical('Hello, critical!') #CRITICAL:root:Hello, critical!
+
+#--------------------------------------------------------------------------------------       
+#Exception handling
+
+try:
+    x=10/0
+except ZeroDivisionError:
+    print("Divide by zero")
+finally:
+    print("Completed execution")
+    
+    
+try:
+    num=int(input("Enter a number"))
+    result=10/num    
+except ValueError as e:
+    print("please enter a number")
+except ZeroDivisionError as e:
+    print("cannot divide by zero") 
+except Exception as e:
+    print("An unexcepted")       
+else:
+    print(f"Result:{result}")
+finally:
+    print("Successfully Executed")  
+    
+
+def check(age):
+    if age<18:
+        raise ValueError("Age must be 18")
+    else:
+        print("You are eligible")
+try:
+    check(16)
+except ValueError as e:
+    print("Error")    
+    
+
+#Customised or user defined exceptions:
+
+class NotEligible(Exception):
+    pass
+def check(age):
+    if age<18:
+        raise NotEligible("Age must be 18!")
+    else:
+        print("you are eligible!")
+try:
+    check(16)
+except NotEligible as e:
+    print("Error!") 
+    
+    
+#--------------------------------------------------------------------------------
+#File Handling
+
+file=open('numpy.py','r')
+#content=file.read()          
+#print(content)
+content1=file.readline()
+content2=file.readlines()
+print(content1)
+print(content2)
+file.close()
+
+file=open("numpy.py",'w')
+file.write("Hello world\n")
+file.write("good bye")
+file.close()
+
+#file existed or not?!
+import os
+if os.path.exists("text.txt"):
+    with open("text.txt","r") as file:
+        content=file.read()
+        print(content)
+else:
+    print("file not existed")
+            
+
+#Exceptions in file handling
+import os 
+try:
+    with open("numpy.py",'r') as file:
+        data=file.read()
+    with open("text.txt",'w') as filewrite:
+        filewrite.write(data)
+    print("file copied successfully")
+except FileNotFoundError:
+    print("input or output operation file")
+except IOError as e:
+    print(f"I/O Exception:{e}")
+except Exception as e:
+    print("An unexpected error")
+    
+#file remove
+f=open("example.txt",'x') 
+import os
+os.remove('example.txt')  
+     
+                    
